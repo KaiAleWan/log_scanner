@@ -1,1 +1,1 @@
-WARNING: Multiple lenghts detected. ERROR: The expected file xxx does not exist.NOTE: Variable Test was initialized with missing values.
+No issues were found in the log file.
