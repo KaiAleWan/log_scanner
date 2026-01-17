@@ -1,5 +1,6 @@
 use log_scanner::{read_log, extract_warnings_and_errors};
 
+// Test if the extract_warnings_and_errors function can process the output of the read_log function.
 #[test]
 fn can_extract_warnings_and_errors() {
     let path: String = String::from("./example/example2.log");

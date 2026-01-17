@@ -3,6 +3,7 @@ use log_scanner::{read_log, extract_warnings_and_errors, present_output, save_ou
  
 fn main() {
 
+    // For later: Use the code to run the utility with the command line
     //let args: Vec<String> = env::args().collect();
     //let path = &args[1];
     let path: String = String::from("./example/example2.log");
