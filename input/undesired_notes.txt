@@ -1,0 +1,3 @@
+NOTE: <VAR> was initialized with missing values.
+NOTE: <VAR> has been converted into numeric values.
+NOTE: <VAR> has been converted into character values.
