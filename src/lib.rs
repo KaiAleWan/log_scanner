@@ -18,6 +18,17 @@ pub fn read_file(file_path: &str) -> String {
     }
 }
 
+/// Processes the input log file path to derive a name for
+/// the output file. 
+/// The derived name will be <input file> messages.txt.
+///
+/// # Returns
+/// `String`: The derived name for the output file
+pub fn derive_file_name(path: &str) -> String {
+    let segments: Vec<&str> = path.split("/").collect();
+    format!("{} messages.txt", segments.last().unwrap())
+}
+
 /// Converts an input string into a `Regex` struct which is used
 /// to detect undesired notes.
 /// Note that the function always adds '^' at the start of the 
@@ -102,14 +113,14 @@ pub fn present_output(messages: &Vec<String>) {
     }
 }
 
-/// Saves the contents of a Vec<String> to a .txt file located in
+/// Saves the contents of a Vec<String> to a file located in
 /// the ./output folder.
 /// If the vector is empty, it will create a generic message instead.
 ///
 /// # Panics
 /// The function panics if the output file cannot be created or updated.
 pub fn save_output(filename: &str, messages: &Vec<String>) {
-    let file_path = format!("./output/{}.txt", filename);
+    let file_path = format!("./output/{}", filename);
     let mut file = File::create(file_path).unwrap();
     if !messages.is_empty() {
         for message in messages {
@@ -133,6 +144,14 @@ mod tests {
         let result = read_file("./example/example1.log");
         println!("{}", result);
         assert_eq!(result, String::from("Import was successful."));
+    }
+
+    // Check if the output filename is derived correctly
+    #[test]
+    fn it_derives_the_filename() {
+        let path = "./example/example1.log";
+        let result = derive_file_name(path);
+        assert_eq!(result, "example1.log messages.txt");
     }
 
     // Check if the extract_warnings_and_errors function is able to identify and extract warnings and errors

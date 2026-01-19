@@ -1,4 +1,10 @@
-use log_scanner::{extract_messages, present_output, read_file, save_output};
+use log_scanner::{
+    extract_messages, 
+    present_output, 
+    read_file, 
+    derive_file_name, 
+    save_output
+};
 use actix_web::{post, web, App, HttpServer, HttpResponse};
 use clap::{Parser, Subcommand};
 
@@ -39,7 +45,8 @@ fn scan_log_file(path: &str) {
     let undesired_notes = read_file("./input/undesired_notes.txt");
     let messages = extract_messages(&log_file, &undesired_notes);
     present_output(&messages);
-    save_output("test", &messages);
+    let output_name = derive_file_name(path);
+    save_output(&output_name, &messages);
 }
 
 #[actix_web::main]
