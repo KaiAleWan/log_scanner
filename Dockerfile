@@ -1,5 +1,5 @@
 # Stage 1: Build the Rust app
-FROM rust:1.91 as builder
+FROM rust:1.91 AS builder
 
 WORKDIR /usr/src/app
 
